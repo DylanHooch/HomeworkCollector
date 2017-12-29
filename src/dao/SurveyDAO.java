@@ -1,31 +1,18 @@
 package dao;
 
+import bean.Survey;
+import bean.SurveyTask;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
-public abstract class SurveyDAO {
-    private Connection connection = null;
-
-
-
-    private String getPassword(){
-        String path = SurveyDAO.class.getClassLoader().getResource("pw").getPath();//通过URI形式
-        String pw=null;
-        File file=new File("pw");
-        if(file.exists()) {
-            try {
-                FileInputStream in = new FileInputStream(path);
-                FileInputStream fis = new FileInputStream(file);
-
-            }catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        return pw;
-    }
-
+public interface SurveyDAO {
+    public List<Survey> queryAll();
+    public Survey queryById(int id);
+    public void update(Survey survey);
+    public void insert(Survey survey);
+    public void deleteById(int id);
 }
